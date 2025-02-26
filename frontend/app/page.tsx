@@ -7,7 +7,6 @@ import { Badge } from "@/components/ui/badge"
 import { CodeEditor } from "@/components/code-editor"
 import { Camera } from "lucide-react"
 import logo from "@/app/assets/logo.png"
-import { NavItem } from "@/components/nav-item"
 import { NavDropdown, resourcesItems, productItems, useCasesItems } from "@/components/nav-dropdown"
 
 export default function Home() {
