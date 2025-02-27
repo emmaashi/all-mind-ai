@@ -1,18 +1,18 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import Link from "next/link"
+import { useState } from "react";
+import Link from "next/link";
 
 interface NavItemProps {
-  href: string
-  children: React.ReactNode
-  className?: string
+  href: string;
+  children: React.ReactNode;
+  className?: string;
 }
 
 export function NavItem({ href, children, className = "" }: NavItemProps) {
-  const [isHovered, setIsHovered] = useState(false)
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <Link
@@ -27,6 +27,5 @@ export function NavItem({ href, children, className = "" }: NavItemProps) {
         style={{ transform: isHovered ? "scaleX(1)" : "scaleX(0)" }}
       />
     </Link>
-  )
+  );
 }
-
