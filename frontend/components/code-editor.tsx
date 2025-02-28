@@ -23,14 +23,14 @@ export function CodeEditor({
   const mouseY = useMotionValue(0);
 
   const rotateX = useSpring(
-    useTransform(mouseY, [-0.5, 0.5], ["10deg", "-10deg"]),
+    useTransform(mouseY, [-0.1, 0.1], ["20deg", "-20deg"]),
     {
       damping: 25,
       stiffness: 250,
     },
   );
   const rotateY = useSpring(
-    useTransform(mouseX, [-0.5, 0.5], ["-10deg", "10deg"]),
+    useTransform(mouseX, [-0.1, 0.1], ["-20deg", "20deg"]),
     {
       damping: 25,
       stiffness: 250,

@@ -18,6 +18,8 @@ import jina from "@/app/assets/jina.png";
 import textualize from "@/app/assets/textualize.png";
 import chakra from "@/app/assets/chakra.png";
 import supabase from "@/app/assets/supabase.png";
+import { PricingSection } from "@/components/pricing-section";
+import { CodeCarousel } from "@/components/code-carousel"
 
 const companyLogos = [
   { name: "Vendure", src: vendure.src },
@@ -216,7 +218,7 @@ export default function Home() {
 
                 <a
                   href="#"
-                  className="text-lg text-blue-500 font-medium inline-flex items-center hover:underline border-b border-blue-500 pb-1"
+                  className="text-lg font-medium inline-flex items-center hover:underline border-b border-black pb-1"
                 >
                   Learn more <span className="ml-1">→</span>
                 </a>
@@ -225,11 +227,8 @@ export default function Home() {
                   <div className="flex items-start">
                     <span className="text-2xl mr-3">💡</span>
                     <div>
-                      <h4 className="font-bold text-xl text-gray-800 mb-2">
-                        Share interactive slides
-                      </h4>
                       <p className="text-lg text-gray-700">
-                        so your viewers can easily copy code snippets and
+                        <b>Share interactive slides </b>so your viewers can easily copy code snippets and
                         interact with links.
                       </p>
                     </div>
@@ -239,6 +238,8 @@ export default function Home() {
             </div>
           </div>
         </section>
+        <CodeCarousel/>
+        <PricingSection/>
       </div>
     </div>
   );
