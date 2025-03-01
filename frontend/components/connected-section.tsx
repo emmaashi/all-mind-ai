@@ -32,61 +32,6 @@ const containerVariants = {
       },
     },
   }
-  
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut",
-      },
-    },
-  }
-  
-  const codeBlockVariants = {
-    hidden: { opacity: 0, scale: 0.8, y: 20 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 200,
-        damping: 20,
-      },
-    },
-    hover: {
-      scale: 1.02,
-      rotate: -1,
-      transition: {
-        type: "spring",
-        stiffness: 400,
-        damping: 25,
-      },
-    },
-  }
-  
-  const socialIconVariants = {
-    hidden: { opacity: 0, scale: 0 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        type: "spring",
-        stiffness: 300,
-        damping: 20,
-      },
-    },
-    hover: {
-      scale: 1.2,
-      rotate: [0, -10, 10, -10, 0],
-      transition: {
-        duration: 0.5,
-      },
-    },
-  }
 
 export function ConnectedSections() {
   return (
