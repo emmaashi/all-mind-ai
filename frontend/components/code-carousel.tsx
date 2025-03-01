@@ -1,8 +1,13 @@
-"use client"
+"use client";
 
-import { useRef } from "react"
-import { motion, useAnimationFrame, useMotionValue, useSpring } from "framer-motion"
-import { CodeWindow } from "./code-window"
+import { useRef } from "react";
+import {
+  motion,
+  useAnimationFrame,
+  useMotionValue,
+  useSpring,
+} from "framer-motion";
+import { CodeWindow } from "./code-window";
 
 const backgrounds = [
   "bg-gradient-to-br from-orange-200 to-pink-300",
@@ -11,24 +16,24 @@ const backgrounds = [
   "bg-gradient-to-br from-orange-200 to-purple-300",
   "bg-gradient-to-br from-yellow-100 to-purple-200",
   "bg-gradient-to-br from-blue-400 to-purple-400",
-]
+];
 
 const code = `function hello(name: string) {
   console.log('Hi ' + name);
-}`
+}`;
 
 export function CodeCarousel() {
-  const ref = useRef<HTMLDivElement>(null)
-  const x = useMotionValue(0)
+  const ref = useRef<HTMLDivElement>(null);
+  const x = useMotionValue(0);
   const springX = useSpring(x, {
     damping: 50,
     stiffness: 400,
-  })
+  });
 
   useAnimationFrame((time) => {
-    const xPos = (time * 0.05) % (ref.current?.scrollWidth || 0)
-    x.set(-xPos)
-  })
+    const xPos = (time * 0.05) % (ref.current?.scrollWidth || 0);
+    x.set(-xPos);
+  });
 
   return (
     <div className="w-full overflow-hidden py-20">
@@ -38,11 +43,10 @@ export function CodeCarousel() {
             key={i}
             className={`relative w-[600px] h-[300px] rounded-3xl ${backgrounds[i]} p-12 flex items-center justify-center`}
           >
-            <CodeWindow code={code} showCopy={i === 1} />
+            <CodeWindow code={code} filename="hello.ts" />
           </div>
         ))}
       </motion.div>
     </div>
-  )
+  );
 }
-

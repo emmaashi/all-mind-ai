@@ -119,6 +119,23 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+.watercolor-bg {
+  background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.9), rgba(240, 249, 255, 0.95));
+  position: relative;
+}
+
+.watercolor-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("/watercolor-texture.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.1;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

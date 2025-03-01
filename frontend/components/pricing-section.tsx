@@ -1,30 +1,34 @@
 "use client"
 
 import React from "react"
-
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Switch } from "@/components/ui/switch"
-import { Building2, Medal, Trophy, Users, Check } from "lucide-react"
-
-interface Feature {
-  name: string
-  values: {
-    free: string | boolean
-    starter: string | boolean
-    professional: string | boolean
-    team: string | boolean
-  }
-}
+import { Building2, Medal, Trophy, Users, Check, VideoIcon, Pencil, Share2, Wrench, HeadphonesIcon } from "lucide-react"
+import { Badge } from "@/components/ui/badge"
 
 interface Category {
   name: string
+  icon: React.ReactNode
+  experimental?: boolean
   features: Feature[]
+}
+
+interface Feature {
+  name: string
+  subtitle?: string
+  values: {
+    free: React.ReactNode | string | number
+    starter: React.ReactNode | string | number
+    professional: React.ReactNode | string | number
+    team: React.ReactNode | string | number
+  }
 }
 
 const categories: Category[] = [
   {
     name: "Dashboard",
+    icon: <Building2 className="w-5 h-5" />,
     features: [
       {
         name: "Image upload limit",
@@ -56,38 +60,247 @@ const categories: Category[] = [
       {
         name: "Sync snaps and folders",
         values: {
-          free: true,
-          starter: true,
-          professional: true,
-          team: true,
+          free: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          starter: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          professional: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          team: <Check className="w-5 h-5 mx-auto text-purple-500" />,
         },
       },
     ],
   },
   {
-    name: "Collaboration",
+    name: "Video Export",
+    icon: <VideoIcon className="w-5 h-5" />,
+    experimental: true,
     features: [
       {
-        name: "Team members",
+        name: "Frame rate",
+        subtitle: "(incl. watermark)",
         values: {
-          free: "-",
-          starter: "-",
-          professional: "-",
-          team: "4 members",
+          free: "30fps",
+          starter: "30 fps",
+          professional: "60 fps",
+          team: "60 fps",
+        },
+      },
+      {
+        name: "Scale",
+        values: {
+          free: "1",
+          starter: "2",
+          professional: "4",
+          team: "4",
+        },
+      },
+      {
+        name: "MP4 Export",
+        values: {
+          free: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          starter: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          professional: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          team: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+        },
+      },
+      {
+        name: "GIF Export",
+        values: {
+          free: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          starter: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          professional: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          team: <Check className="w-5 h-5 mx-auto text-purple-500" />,
         },
       },
     ],
   },
   {
-    name: "Presentations",
+    name: "Editor",
+    icon: <Pencil className="w-5 h-5" />,
     features: [
       {
-        name: "Slides per presentation",
+        name: "AI Explanations",
         values: {
-          free: "5 (incl. watermark)",
+          free: "5",
           starter: "50",
+          professional: "100",
+          team: "500",
+        },
+      },
+      {
+        name: "Profile info",
+        values: {
+          free: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          starter: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          professional: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          team: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+        },
+      },
+      {
+        name: "Code editor per slide",
+        values: {
+          free: "1",
+          starter: "2",
           professional: "Unlimited",
           team: "Unlimited",
+        },
+      },
+      {
+        name: "Code highlighting",
+        values: {
+          free: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          starter: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          professional: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          team: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+        },
+      },
+      {
+        name: "Text elements per slide",
+        values: {
+          free: "5",
+          starter: "10",
+          professional: "Unlimited",
+          team: "Unlimited",
+        },
+      },
+      {
+        name: "Form elements",
+        values: {
+          free: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          starter: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          professional: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          team: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+        },
+      },
+      {
+        name: "Export Selected Element",
+        values: {
+          free: "-",
+          starter: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          professional: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          team: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+        },
+      },
+      {
+        name: "Snapping guidelines",
+        values: {
+          free: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          starter: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          professional: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          team: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+        },
+      },
+      {
+        name: "Element Multi-Selection",
+        values: {
+          free: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          starter: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          professional: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          team: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+        },
+      },
+      {
+        name: "Shortcuts",
+        values: {
+          free: "Basic",
+          starter: "Pro",
+          professional: "Pro",
+          team: "Pro",
+        },
+      },
+    ],
+  },
+  {
+    name: "Sharing",
+    icon: <Share2 className="w-5 h-5" />,
+    features: [
+      {
+        name: "Export as image",
+        values: {
+          free: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          starter: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          professional: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          team: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+        },
+      },
+      {
+        name: "Share as public URL",
+        values: {
+          free: "100 views / month",
+          starter: "1,000 views / month",
+          professional: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          team: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+        },
+      },
+      {
+        name: "Embedding",
+        values: {
+          free: "100 views / month",
+          starter: "1,000 views / month",
+          professional: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          team: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+        },
+      },
+    ],
+  },
+  {
+    name: "API",
+    icon: <Wrench className="w-5 h-5" />,
+    features: [
+      {
+        name: "Simple Snap Calls",
+        subtitle: "(incl. watermark)",
+        values: {
+          free: "-",
+          starter: "50 / month",
+          professional: "1,000 / month",
+          team: "5,000 / month",
+        },
+      },
+    ],
+  },
+  {
+    name: "Integrations",
+    icon: <Wrench className="w-5 h-5" />,
+    features: [
+      {
+        name: "VS Code Extension",
+        values: {
+          free: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          starter: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          professional: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          team: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+        },
+      },
+      {
+        name: "IntelliJ Plugin",
+        values: {
+          free: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          starter: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          professional: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          team: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+        },
+      },
+    ],
+  },
+  {
+    name: "Support",
+    icon: <HeadphonesIcon className="w-5 h-5" />,
+    features: [
+      {
+        name: "Live chat",
+        values: {
+          free: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          starter: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          professional: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+          team: <Check className="w-5 h-5 mx-auto text-purple-500" />,
+        },
+      },
+      {
+        name: "Priority",
+        values: {
+          free: "Low priority",
+          starter: "Medium priority",
+          professional: "High priority",
+          team: "Highest priority",
         },
       },
     ],
@@ -145,12 +358,12 @@ export function PricingSection() {
 
         <div className="max-w-[1200px] mx-auto">
           <div className="grid grid-cols-[1fr_repeat(4,minmax(200px,1fr))] gap-8 items-start">
-            <div /> 
+            <div />
             {plans.map((plan) => (
               <div
                 key={plan.name}
                 className={`relative rounded-[20px] ${
-                  plan.featured ? "border-2 border-purple-400" : "border border-gray-200"
+                  plan.featured ? "border-2 border-purple-400 shadow-lg shadow-purple-100" : "border border-gray-200"
                 }`}
               >
                 <div className="p-8">
@@ -177,12 +390,21 @@ export function PricingSection() {
 
             {categories.map((category) => (
               <div key={category.name} className="col-span-full grid grid-cols-[1fr_repeat(4,minmax(200px,1fr))] gap-8">
-                <h3 className="text-xl font-bold mt-8">{category.name}</h3>
+                <h3 className="text-xl font-bold mt-8 flex items-center gap-2">
+                  {category.icon}
+                  {category.name}
+                  {category.experimental && (
+                    <Badge variant="secondary" className="bg-amber-50 text-amber-700 border-amber-200">
+                      Experimental
+                    </Badge>
+                  )}
+                </h3>
                 <div className="col-span-4" />
                 {category.features.map((feature) => (
                   <React.Fragment key={feature.name}>
                     <div className="text-sm text-gray-600">
                       <span className="border-b border-dotted border-gray-300">{feature.name}</span>
+                      {feature.subtitle && <span className="text-xs text-gray-400 block mt-1">{feature.subtitle}</span>}
                     </div>
                     {plans.map((plan) => (
                       <div key={`${feature.name}-${plan.name}`} className="text-center">
@@ -209,4 +431,3 @@ export function PricingSection() {
     </section>
   )
 }
-
