@@ -2,7 +2,6 @@
 
 import { Twitter, Youtube } from "lucide-react"
 import Link from "next/link"
-import Image from "next/image"
 
 const footerLinks = {
   Product: ["Pricing", "Editor", "Templates", "Features", "Embedding"],

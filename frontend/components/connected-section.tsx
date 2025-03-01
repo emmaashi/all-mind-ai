@@ -4,9 +4,7 @@ import { CodeWindow } from "./code-window"
 import { LinkedinIcon, InstagramIcon, XIcon } from "lucide-react";
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
 import { ArrowRight } from "lucide-react"
-import { useRef } from "react"
 
 const educationCode = `function testFunc() {
   console.log('Monocraft!');
