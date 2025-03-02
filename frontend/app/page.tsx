@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Menu } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -37,6 +37,7 @@ const companyLogos = [
 ];
 
 export default function Home() {
+  const [menuOpen, setMenuOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const pricingRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -53,7 +54,7 @@ export default function Home() {
   return (
     <div ref={containerRef} className="relative min-h-screen watercolor-bg">
       <div className="relative">
-        <motion.nav
+      <motion.nav
           initial={{ y: -100 }}
           animate={{ y: 0 }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
@@ -94,6 +95,31 @@ export default function Home() {
               </div>
 
               <div className="flex items-center gap-4">
+                <div className="md:hidden">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="md:hidden"
+                    onClick={() => setMenuOpen(!menuOpen)}
+                  >
+                    <Menu className="h-5 w-5" />
+                  </Button>
+                </div>
+
+                {menuOpen && (
+                  <div className="absolute top-16 right-4 bg-white p-4 rounded-lg shadow-lg md:hidden">
+                    <button
+                      onClick={scrollToPricing}
+                      className="block text-sm font-bold hover:text-blue-500 transition-colors mb-2"
+                    >
+                      Pricing
+                    </button>
+                    <NavDropdown title="Use Cases" items={useCasesItems} />
+                    <NavDropdown title="Product" items={productItems} />
+                    <NavDropdown title="Resources" items={resourcesItems} />
+                  </div>
+                )}
+
                 <Link
                   href="#"
                   className="hidden md:block text-sm font-bold hover:text-blue-500 transition-colors"
@@ -106,9 +132,6 @@ export default function Home() {
                 >
                   Editor
                 </Link>
-                <Button variant="ghost" size="icon" className="md:hidden">
-                  <Menu className="h-5 w-5" />
-                </Button>
               </div>
             </div>
           </div>
