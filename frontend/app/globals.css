@@ -120,7 +120,11 @@
 }
 
 .watercolor-bg {
-  background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.9), rgba(240, 249, 255, 0.95));
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.9),
+    rgba(240, 249, 255, 0.95)
+  );
   position: relative;
 }
 

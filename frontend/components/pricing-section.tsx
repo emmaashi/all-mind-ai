@@ -1,28 +1,39 @@
-"use client"
+"use client";
 
-import React from "react"
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Switch } from "@/components/ui/switch"
-import { Building2, Medal, Trophy, Users, Check, VideoIcon, Pencil, Share2, Wrench, HeadphonesIcon } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
+import React from "react";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
+import {
+  Building2,
+  Medal,
+  Trophy,
+  Users,
+  Check,
+  VideoIcon,
+  Pencil,
+  Share2,
+  Wrench,
+  HeadphonesIcon,
+} from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 interface Category {
-  name: string
-  icon: React.ReactNode
-  experimental?: boolean
-  features: Feature[]
+  name: string;
+  icon: React.ReactNode;
+  experimental?: boolean;
+  features: Feature[];
 }
 
 interface Feature {
-  name: string
-  subtitle?: string
+  name: string;
+  subtitle?: string;
   values: {
-    free: React.ReactNode | string | number
-    starter: React.ReactNode | string | number
-    professional: React.ReactNode | string | number
-    team: React.ReactNode | string | number
-  }
+    free: React.ReactNode | string | number;
+    starter: React.ReactNode | string | number;
+    professional: React.ReactNode | string | number;
+    team: React.ReactNode | string | number;
+  };
 }
 
 const categories: Category[] = [
@@ -305,7 +316,7 @@ const categories: Category[] = [
       },
     ],
   },
-]
+];
 
 const plans = [
   {
@@ -327,7 +338,8 @@ const plans = [
     icon: <Trophy className="w-8 h-8 text-yellow-500" />,
     price: { monthly: 9, yearly: 108 },
     buttonText: "✨ Upgrade",
-    buttonStyle: "bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white",
+    buttonStyle:
+      "bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white",
     featured: true,
   },
   {
@@ -337,10 +349,10 @@ const plans = [
     buttonText: "+ Create",
     buttonStyle: "bg-purple-500 hover:bg-purple-600 text-white",
   },
-]
+];
 
 export function PricingSection() {
-  const [isYearly, setIsYearly] = useState(false)
+  const [isYearly, setIsYearly] = useState(false);
 
   return (
     <section className="py-24">
@@ -349,9 +361,17 @@ export function PricingSection() {
           <h2 className="text-4xl font-bold mb-4">Pricing</h2>
           <div className="flex items-center justify-center gap-4 mb-4">
             <span className="text-sm font-medium">Monthly</span>
-            <Switch checked={isYearly} onCheckedChange={setIsYearly} className="data-[state=checked]:bg-purple-500" />
+            <Switch
+              checked={isYearly}
+              onCheckedChange={setIsYearly}
+              className="data-[state=checked]:bg-purple-500"
+            />
             <span className="text-sm font-medium">Yearly</span>
-            {isYearly && <span className="text-purple-600 text-sm font-medium">Save 33% ↓</span>}
+            {isYearly && (
+              <span className="text-purple-600 text-sm font-medium">
+                Save 33% ↓
+              </span>
+            )}
           </div>
           <p className="text-sm text-gray-500">Price in USD. VAT may apply.</p>
         </div>
@@ -363,7 +383,9 @@ export function PricingSection() {
               <div
                 key={plan.name}
                 className={`relative rounded-[20px] ${
-                  plan.featured ? "border-2 border-purple-400 shadow-lg shadow-purple-100" : "border border-gray-200"
+                  plan.featured
+                    ? "border-2 border-purple-400 shadow-lg shadow-purple-100"
+                    : "border border-gray-200"
                 }`}
               >
                 <div className="p-8">
@@ -371,13 +393,17 @@ export function PricingSection() {
                     <div className="mb-4">{plan.icon}</div>
                     <h3 className="text-xl font-bold mb-4">{plan.name}</h3>
                     <div className="mb-4">
-                      <span className={`text-4xl font-bold ${plan.featured ? "text-purple-500" : ""}`}>
+                      <span
+                        className={`text-4xl font-bold ${plan.featured ? "text-purple-500" : ""}`}
+                      >
                         ${isYearly ? plan.price.yearly : plan.price.monthly}
                       </span>
                       <span className="text-gray-500">/month</span>
                     </div>
                     {isYearly && plan.price.yearly > 0 && (
-                      <div className="text-sm text-gray-500 mb-6">Billed ${plan.price.yearly} yearly</div>
+                      <div className="text-sm text-gray-500 mb-6">
+                        Billed ${plan.price.yearly} yearly
+                      </div>
                     )}
                   </div>
 
@@ -389,12 +415,18 @@ export function PricingSection() {
             ))}
 
             {categories.map((category) => (
-              <div key={category.name} className="col-span-full grid grid-cols-[1fr_repeat(4,minmax(200px,1fr))] gap-8">
+              <div
+                key={category.name}
+                className="col-span-full grid grid-cols-[1fr_repeat(4,minmax(200px,1fr))] gap-8"
+              >
                 <h3 className="text-xl font-bold mt-8 flex items-center gap-2">
                   {category.icon}
                   {category.name}
                   {category.experimental && (
-                    <Badge variant="secondary" className="bg-amber-50 text-amber-700 border-amber-200">
+                    <Badge
+                      variant="secondary"
+                      className="bg-amber-50 text-amber-700 border-amber-200"
+                    >
                       Experimental
                     </Badge>
                   )}
@@ -403,20 +435,37 @@ export function PricingSection() {
                 {category.features.map((feature) => (
                   <React.Fragment key={feature.name}>
                     <div className="text-sm text-gray-600">
-                      <span className="border-b border-dotted border-gray-300">{feature.name}</span>
-                      {feature.subtitle && <span className="text-xs text-gray-400 block mt-1">{feature.subtitle}</span>}
+                      <span className="border-b border-dotted border-gray-300">
+                        {feature.name}
+                      </span>
+                      {feature.subtitle && (
+                        <span className="text-xs text-gray-400 block mt-1">
+                          {feature.subtitle}
+                        </span>
+                      )}
                     </div>
                     {plans.map((plan) => (
-                      <div key={`${feature.name}-${plan.name}`} className="text-center">
-                        {typeof feature.values[plan.name.toLowerCase() as keyof typeof feature.values] === "boolean" ? (
-                          feature.values[plan.name.toLowerCase() as keyof typeof feature.values] ? (
+                      <div
+                        key={`${feature.name}-${plan.name}`}
+                        className="text-center"
+                      >
+                        {typeof feature.values[
+                          plan.name.toLowerCase() as keyof typeof feature.values
+                        ] === "boolean" ? (
+                          feature.values[
+                            plan.name.toLowerCase() as keyof typeof feature.values
+                          ] ? (
                             <Check className="w-5 h-5 mx-auto text-purple-500" />
                           ) : (
                             "-"
                           )
                         ) : (
                           <span className="text-sm">
-                            {feature.values[plan.name.toLowerCase() as keyof typeof feature.values]}
+                            {
+                              feature.values[
+                                plan.name.toLowerCase() as keyof typeof feature.values
+                              ]
+                            }
                           </span>
                         )}
                       </div>
@@ -429,5 +478,5 @@ export function PricingSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { ArrowRight } from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
-import michael from "@/app/assets/michael.png"
-import rodrigo from "@/app/assets/rodrigo.png"
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import michael from "@/app/assets/michael.png";
+import rodrigo from "@/app/assets/rodrigo.png";
 
 const stories = [
   {
@@ -23,7 +23,7 @@ const stories = [
     quote:
       "As a developer running a large open source community, without the time and skills for complex design software, snappify lets me get better results in a fraction of the time.",
   },
-]
+];
 
 export function UserStories() {
   return (
@@ -91,7 +91,12 @@ export function UserStories() {
               >
                 <div className="flex items-start gap-4 mb-6">
                   <div className="relative w-16 h-16 rounded-full overflow-hidden">
-                    <Image src={story.image || "/placeholder.svg"} alt={story.name} fill className="object-cover" />
+                    <Image
+                      src={story.image || "/placeholder.svg"}
+                      alt={story.name}
+                      fill
+                      className="object-cover"
+                    />
                   </div>
                   <div>
                     <h3 className="text-xl font-bold flex items-center gap-2">
@@ -101,16 +106,20 @@ export function UserStories() {
                   </div>
                 </div>
                 <p className="text-lg text-gray-700 mb-4">{story.quote}</p>
-                <Link href="#" className="inline-flex items-center text-blue-500 hover:text-blue-600 font-medium">
+                <Link
+                  href="#"
+                  className="inline-flex items-center text-blue-500 hover:text-blue-600 font-medium"
+                >
                   Read more <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </motion.div>
-              <div className="absolute top-4 right-4 text-6xl text-blue-500 opacity-50 z-20">"</div>
+              <div className="absolute top-4 right-4 text-6xl text-blue-500 opacity-50 z-20">
+                "
+              </div>
             </motion.div>
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }
-

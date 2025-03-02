@@ -1,14 +1,20 @@
-"use client"
+"use client";
 
-import { Twitter, Youtube } from "lucide-react"
-import Link from "next/link"
+import { Twitter, Youtube } from "lucide-react";
+import Link from "next/link";
 
 const footerLinks = {
   Product: ["Pricing", "Editor", "Templates", "Features", "Embedding"],
-  Resources: ["Documentation", "Tutorials", "Blog", "User Stories", "Changelog"],
+  Resources: [
+    "Documentation",
+    "Tutorials",
+    "Blog",
+    "User Stories",
+    "Changelog",
+  ],
   Integrations: ["VS Code Extension", "IntelliJ Plugin"],
   About: ["Run by a human", "Imprint", "Legal"],
-}
+};
 
 export function ModernFooter() {
   return (
@@ -28,10 +34,16 @@ export function ModernFooter() {
               and smoothly animated videos.
             </p>
             <div className="flex gap-4 mb-6">
-              <Link href="#" className="text-black hover:text-grey transition-colors hover:scale-110 transform">
+              <Link
+                href="#"
+                className="text-black hover:text-grey transition-colors hover:scale-110 transform"
+              >
                 <Twitter className="w-5 h-5" />
               </Link>
-              <Link href="#" className="text-black hover:text-grey transition-colors hover:scale-110 transform">
+              <Link
+                href="#"
+                className="text-black hover:text-grey transition-colors hover:scale-110 transform"
+              >
                 <Youtube className="w-5 h-5" />
               </Link>
             </div>
@@ -44,7 +56,9 @@ export function ModernFooter() {
 
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
-              <h3 className="font-medium mb-4 text-lg text-black">{category}</h3>
+              <h3 className="font-medium mb-4 text-lg text-black">
+                {category}
+              </h3>
               <ul className="space-y-2">
                 {links.map((link) => (
                   <li key={link}>
@@ -71,6 +85,5 @@ export function ModernFooter() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
-
